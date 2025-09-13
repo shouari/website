@@ -7,17 +7,18 @@ from website.theme import PRIMARY_BG
 
 
 def base_page(*children: rx.Component) -> rx.Component:
-    return rx.flex(
+    return rx.box(
         rx.vstack(
             navbar(),
-            rx.box(*children, flex="1", width="100%"),
-            footer(),
+            rx.box(*children, width="100%", flex="1"),  # ← contenu extensible
+            footer(),  # ← collera en bas
             spacing="0",
+            align="stretch",
+            flex = "1",  # ← prend toute la hauteur de la fenêtre
         ),
-        direction="column",
-        min_height="100vh",  # occupe toute la hauteur de l’écran
         width="100%",
-       
+        height="100vh",  # ← prend toute la hauteur de la fenêtre
         bg=PRIMARY_BG,
+        padding="0",  # ← important pour éviter les bandes
+        margin="0",
     )
-

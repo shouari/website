@@ -1,11 +1,23 @@
 # website/components/navbar.py
 
 import reflex as rx
-from website.theme import PRIMARY_BG, TEXT_MAIN, ACCENT, container_style, container_box_style
+from website.theme import *
+from reflex.state import State
 
 def navbar_link(text: str, url: str) -> rx.Component:
+    
+    is_active = State.router.page.path == url
     return rx.link(
-        rx.text(text, size="4", weight="medium"), href=url
+        rx.text(text, 
+                size="5", 
+                
+                weight=rx.cond(is_active, "bold", "medium"), 
+                text_decoration=rx.cond(is_active, "underline", "none"),
+                color=rx.cond(is_active, "#372F94", TEXT_MAIN), 
+                _hover={"color": "#372F9450", "text_decoration": "underline"},
+            
+                ), 
+                href=url
     )
 
 
@@ -16,17 +28,17 @@ def navbar() -> rx.Component:
                 rx.hstack(
                     rx.image(
                         src="\Logo.png",
-                        width="2.25em",
+                        width="1.5em",
                         height="auto",
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Salim Houari", size="7", weight="bold"
+                        "Salim Houari", size="5", weight="bold", color=TEXT_MAIN
                     ),
                     align_items="center",
                 ),
                 rx.hstack(
-                    navbar_link("Acceuil", "/"),
+                    navbar_link("Accueil", "/home"),
                     # rx.menu.root(
                     #     rx.menu.trigger(
                     #         rx.button(
@@ -47,10 +59,12 @@ def navbar() -> rx.Component:
                     #         rx.menu.item("Service 3"),
                     #     ),
                     # ),
-                    navbar_link("Pricing", "/#"),
-                    navbar_link("Contact", "/#"),
+                    navbar_link("A Propos", "/about"),
+                    navbar_link("Contact", "/contact"),
                     justify="end",
                     spacing="5",
+                    
+                    
                 ),
                 justify="between",
                 align_items="center",
@@ -60,13 +74,13 @@ def navbar() -> rx.Component:
             rx.hstack(
                 rx.hstack(
                     rx.image(
-                        src="/logo.jpg",
-                        width="2em",
+                        src="\Logo.png",
+                        width="1.5em",
                         height="auto",
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Reflex", size="6", weight="bold"
+                        "Salim Houari", size="6", weight="bold"
                     ),
                     align_items="center",
                 ),
@@ -94,10 +108,11 @@ def navbar() -> rx.Component:
                 align_items="center",
             ),
         ),
-        bg=ACCENT,
+        bg=CALYPSO_TRANSPARENT_20,
         padding="1em",
         # position="fixed",
         # top="0px",
         # z_index="5",
         width="100%",
+        
     )

@@ -6,11 +6,13 @@
 
 import reflex as rx
 
-PRIMARY_BG = "#F6F4F4F8"  # Fond clair
-TEXT_MAIN  = "#111827"  # Texte principal
-ACCENT     = "#2563EB"  # Bleu CTA
-ACCENT_2   = "#2564EB28"  # Orange secondaire
+PRIMARY_BG = "#0f172a"
+
+TEXT_MAIN  = "#F1F5F9"  # l
+ACCENT     = "#372F94"  # 
+ACCENT_2   = "#372F94"  # 
 WHITE      = "#FFFFFF"
+CALYPSO_TRANSPARENT_20      = "#2F729420"
 
 # Styles utilitaires
 container_style = dict(

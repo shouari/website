@@ -34,7 +34,7 @@ def hero() -> rx.Component:
                 # ),
                 spacing="4",
                 align="center",
-                padding_y="1rem",
+                padding_y="5rem",
             ),
         ),
         # **section_style,
@@ -47,6 +47,20 @@ def intro_section() -> rx.Component:
         markdown_text = f.read()
     
     return  rx.box(
+            rx.image(
+            src="/smoke.svg",
+            position="absolute",
+            top="0%",
+            left="0",
+            # transform="translate(-50%, -50%)",
+            width="100%",
+            height="auto",
+            opacity=0.1,
+            z_index=0,
+            style={"pointer-events": "none"},
+        ),
+
+
             rx.center(
                 section_container(
                     rx.markdown(markdown_text,
@@ -69,7 +83,8 @@ def three_pillars() -> rx.Component:
 
     with open("website\content\card_simplifier.md", "r", encoding="utf-8") as f:
         card_simplifier_text = f.read()
-
+    with open("website\content\card_automatiser.md", "r", encoding="utf-8") as f:
+        card_automatiser_text = f.read()
 
     card_style = dict(
         
@@ -95,7 +110,10 @@ def three_pillars() -> rx.Component:
                             ),
                
                 **card_style,
-                bg=ACCENT_2,
+                bg="rgba(0,66,95,0.1)",  # dark semi-transparent
+                backdrop_filter="blur(9px)",
+                _hover={
+                    "bg" : "#442F9445"},
             ),
             rx.box(
                 rx.markdown(card_simplifier_text,
@@ -103,13 +121,21 @@ def three_pillars() -> rx.Component:
                             font_size="1rem",
                             ),
                 **card_style,
-                bg=ACCENT_2
+                bg="rgba(0,66,95,0.1)",  # dark semi-transparent
+                backdrop_filter="blur(9px)",
+                _hover={
+                    "bg" : "#442F9445"},
             ),
             rx.box(
-                rx.heading("Automatiser", font_size="1.2rem", **heading_style),
-                rx.text("Mettre la technologie au service des équipes : Zapier, Make, scripts, mini‑apps.", **text_style),
+                rx.markdown(card_automatiser_text,
+                            **text_style,
+                            font_size="1rem",
+                            ),
                 **card_style,
-                bg=ACCENT_2,
+                bg="rgba(0,66,95,0.1)",  # dark semi-transparent
+                backdrop_filter="blur(9px)",
+                _hover={
+                    "bg" : "#442F9445"},
             ),
             columns=rx.breakpoints(xs="1fr", md=" repeat(3, 1fr)"),
             gap="1rem",
@@ -156,15 +182,17 @@ def cta_banner() -> rx.Component:
             max_width="auto",
             width="100%",
                    ),
-        bg=ACCENT,
+        bg="linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3))",
         padding_y="1rem",  # ✅ un peu plus d’air
         width="100%",
+        backdrop_filter="blur(10px)"
+
         
     )
 
 
 
-@rx.page(route="/")
+@rx.page(route="/home")
 def index() -> rx.Component:
     return base_page(
         hero(),

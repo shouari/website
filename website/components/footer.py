@@ -5,7 +5,7 @@
 
 
 import reflex as rx
-from website.theme import PRIMARY_BG, TEXT_MAIN, ACCENT, container_style
+from website.theme import *
 
 def footer() -> rx.Component:
     return rx.box(
@@ -15,7 +15,7 @@ def footer() -> rx.Component:
                 rx.spacer(),
                 rx.hstack(
                     rx.link(rx.icon(tag="linkedin", size=30, color="#0A66C2"),
-                            href="https://www.linkedin.com/in/salimhouari/",
+                            href="https://www.linkedin.com/in/salim-houari/",
                             is_external=True,
                             aria_label="Mon profile LinkedIn" ,                    
                                    ),
@@ -38,6 +38,5 @@ def footer() -> rx.Component:
         width="100%",
         padding_y="0.5rem",
         border_top="1px solid rgba(0,0,0,0.06)",
-        bg=PRIMARY_BG,
-        margin_top="2rem",
+        bg=CALYPSO_TRANSPARENT_20,
     )
