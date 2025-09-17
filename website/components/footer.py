@@ -17,7 +17,9 @@ def footer() -> rx.Component:
                     rx.link(rx.icon(tag="linkedin", size=30, color="#0A66C2"),
                             href="https://www.linkedin.com/in/salim-houari/",
                             is_external=True,
-                            aria_label="Mon profile LinkedIn" ,                    
+                            aria_label="Mon profile LinkedIn" , 
+                            _hover={"opacity":0.8},
+                                               
                                    ),
                     justify="center",
                     align="center",                  

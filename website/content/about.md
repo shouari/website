@@ -2,7 +2,7 @@
 
 **Artisan de la clarté opérationnelle**
 
-Aussi loin que je me souvienne, j’ai toujours été attiré par la mécanique des choses. Pas seulement les machines, mais les rouages invisibles : les processus, les systèmes, les façons de faire qu’on ne questionne plus.
+Aussi loin que je me souvienne, j’ai toujours été attiré par la mécanique et la dynamique des systèmes. Pas seulement les machines, mais les rouages invisibles : les processus, les systèmes, les façons de faire qu’on ne questionne plus.
 
 Chez Toyota, j’ai découvert le Kaizen. Pas comme un dogme, mais comme une confirmation : il est possible d’améliorer ce qui semble immuable. De simplifier sans appauvrir. De structurer sans figer. Et surtout, de le faire avec rigueur, respect et intelligence.
 

@@ -9,12 +9,12 @@ def navbar_link(text: str, url: str) -> rx.Component:
     is_active = State.router.page.path == url
     return rx.link(
         rx.text(text, 
-                size="5", 
+                size="3", 
                 
                 weight=rx.cond(is_active, "bold", "medium"), 
                 text_decoration=rx.cond(is_active, "underline", "none"),
-                color=rx.cond(is_active, "#372F94", TEXT_MAIN), 
-                _hover={"color": "#372F9450", "text_decoration": "underline"},
+                color=rx.cond(is_active, "#F1F5F950", TEXT_MAIN), 
+                _hover={"color": "#F1F5F990", "text_decoration": "underline"},
             
                 ), 
                 href=url
@@ -33,7 +33,7 @@ def navbar() -> rx.Component:
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Salim Houari", size="5", weight="bold", color=TEXT_MAIN
+                        "Salim Houari", size="4", weight="bold", color=TEXT_MAIN
                     ),
                     align_items="center",
                 ),
@@ -60,7 +60,7 @@ def navbar() -> rx.Component:
                     #     ),
                     # ),
                     navbar_link("A Propos", "/about"),
-                    navbar_link("Contact", "/contact"),
+                    navbar_link("Blog", "/blog"),
                     justify="end",
                     spacing="5",
                     

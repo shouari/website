@@ -17,8 +17,9 @@ def base_page(*children: rx.Component) -> rx.Component:
             flex = "1",  # ← prend toute la hauteur de la fenêtre
         ),
         width="100%",
-        height="100vh",  # ← prend toute la hauteur de la fenêtre
+        min_height="100vh",  # ← prend toute la hauteur de la fenêtre
         bg=PRIMARY_BG,
-        padding="0",  # ← important pour éviter les bandes
-        margin="0",
+        display="flex",
+        flex_direction="column",
+        justify_content="space-between",  # ← espace entre le contenu et le footer
     )

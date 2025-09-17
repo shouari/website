@@ -114,6 +114,7 @@ def three_pillars() -> rx.Component:
                 backdrop_filter="blur(9px)",
                 _hover={
                     "bg" : "#442F9445"},
+                    
             ),
             rx.box(
                 rx.markdown(card_simplifier_text,

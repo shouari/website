@@ -13,6 +13,7 @@ ACCENT     = "#372F94"  #
 ACCENT_2   = "#372F94"  # 
 WHITE      = "#FFFFFF"
 CALYPSO_TRANSPARENT_20      = "#2F729420"
+CTA_COLOR = "#2F7294"
 
 # Styles utilitaires
 container_style = dict(

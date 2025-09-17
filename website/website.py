@@ -4,6 +4,7 @@ import reflex as rx
 
 from website.pages.index import index
 from website.pages.about import about
+from website.pages.blog import blog
 from rxconfig import config
 
 
@@ -27,5 +28,12 @@ app.add_page(index,
 app.add_page(about,
              title="À propos - Salim Houari",
              description="Découvrez mon parcours et ma mission pour aider les entreprises à optimiser leurs opérations.",
+             image="/Logo.png",
+             meta=meta)
+             
+
+app.add_page(blog,
+             title="Blog - Salim Houari",
+             description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
              image="/Logo.png",
              meta=meta)
