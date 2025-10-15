@@ -20,7 +20,7 @@ ENV PATH="/root/.bun/bin:$PATH"
 COPY . .
 
 # Installe Reflex
-RUN pip install --no-cache-dir reflex
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Compile le site en mode production
 RUN reflex export --env prod
