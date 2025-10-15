@@ -1,12 +1,15 @@
-# utils/supabase_client.py
-
 import os
 from supabase import create_client, Client
-from dotenv import load_dotenv
+from functools import lru_cache
 
-load_dotenv()
+@lru_cache()
+def get_supabase_client() -> Client:
+    supabase_url = os.getenv("SUPABASE_URL")
+    supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+    if not supabase_url:
+        raise ValueError("SUPABASE_URL is not set.")
+    if not supabase_key:
+        raise ValueError("SUPABASE_SERVICE_ROLE_KEY is not set.")
 
-supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+    return create_client(supabase_url, supabase_key)

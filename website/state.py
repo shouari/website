@@ -1,6 +1,8 @@
 import reflex as rx
-from website.utils.supabase_client import supabase
+from website.utils.supabase_client import create_client
 
+
+supabase = create_client()
 class Blog_FormState(rx.State):
     """The state for the blog form."""
     form_data: dict = {}
