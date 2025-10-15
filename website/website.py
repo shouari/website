@@ -5,21 +5,45 @@ import reflex as rx
 from website.pages.index import index
 from website.pages.about import about
 from website.pages.blog import blog
+from website.pages.manifeste import manifeste
 from rxconfig import config
 
 
 meta = [
-    {"name": "theme_color", "content": "#2563EB"},
-    {"char_set": "UTF-8"},
-    {"property": "og:url", "content": "url"},
+    {"charset": "UTF-8"},
+    {"name": "viewport", "content": "width=device-width, initial-scale=1.0"},
+    {"name": "theme-color", "content": "#2563EB"},
+    {"name": "author", "content": "Salim Houari"},
+    {"name": "robots", "content": "index, follow"},
+    {"name": "keywords", "content": "optimisation, automatisation, PME, Québec, consultant, Salim Houari"},
+    {"property": "og:type", "content": "website"},
+    {"property": "og:url", "content": "https://www.salimhouari.com"},
+    {"property": "og:image", "content": "/Logo.png"},
+    {"property": "og:site_name", "content": "Salim Houari"},
 ]
 
 class BaseState(rx.State):
     """The app state."""
     pass
 
+style={
+    "font_family": "Sora, sans-serif",
+}
+app = rx.App(style=style,
+             head_components=[
+                 rx.script(src="https://www.googletagmanager.com/gtag/js?id=G-DZGQP9NWQL"),
+                 rx.script(
+                            """
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-DZGQP9NWQL', { 'debug_mode': true });
+                            """
+                        ),
+             ])
 
-app = rx.App()
+
+
 app.add_page(index,
              title="Salim Houari - Consultant en optimisation des opérations",
              description="Clarifier, Simplifier, Automatiser les opérations de votre entreprise.",
@@ -32,8 +56,15 @@ app.add_page(about,
              meta=meta)
              
 
-app.add_page(blog,
-             title="Blog - Salim Houari",
-             description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
+# app.add_page(blog,
+#              title="Blog - Salim Houari",
+#              description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
+#              image="/Logo.png",
+#              meta=meta)
+
+app.add_page(manifeste,
+             title="Manifeste - Salim Houari",
+             description="Découvrez le manifeste qui guide ma mission: Clarifier, Simplifier, Automatiser les opérations pour une efficacité maximale.",
              image="/Logo.png",
              meta=meta)
+

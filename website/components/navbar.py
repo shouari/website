@@ -12,9 +12,8 @@ def navbar_link(text: str, url: str) -> rx.Component:
                 size="3", 
                 
                 weight=rx.cond(is_active, "bold", "medium"), 
-                text_decoration=rx.cond(is_active, "underline", "none"),
-                color=rx.cond(is_active, "#F1F5F950", TEXT_MAIN), 
-                _hover={"color": "#F1F5F990", "text_decoration": "underline"},
+                color=rx.cond(is_active, "#AC3640", TEXT_MAIN), 
+                _hover={"color": "#B7303B"},
             
                 ), 
                 href=url
@@ -26,41 +25,40 @@ def navbar() -> rx.Component:
         rx.desktop_only(
             rx.hstack(
                 rx.hstack(
+                    navbar_link(
                     rx.image(
                         src="\Logo.png",
                         width="1.5em",
                         height="auto",
                         border_radius="25%",
                     ),
+                    "/home"),
+                    navbar_link(
                     rx.heading(
                         "Salim Houari", size="4", weight="bold", color=TEXT_MAIN
                     ),
+                    "/home"),
+
                     align_items="center",
                 ),
                 rx.hstack(
                     navbar_link("Accueil", "/home"),
-                    # rx.menu.root(
-                    #     rx.menu.trigger(
-                    #         rx.button(
-                    #             rx.text(
-                    #                 "A propos",
-                    #                 size="4",
-                    #                 weight="medium",
-                    #             ),
-                    #             rx.icon("chevron-down"),
-                    #             weight="medium",
-                    #             variant="ghost",
-                    #             size="3",
-                    #         ),
-                    #     ),
-                    #     rx.menu.content(
-                    #         rx.menu.item("A propos de moi"),
-                    #         rx.menu.item("Manifeste"),
-                    #         rx.menu.item("Service 3"),
-                    #     ),
-                    # ),
-                    navbar_link("A Propos", "/about"),
-                    navbar_link("Blog", "/blog"),
+                    rx.menu.root(
+                        rx.menu.trigger(
+                            rx.button(
+                                rx.text("A propos", color=TEXT_MAIN),
+                                rx.icon("chevron-down"),
+                                weight="light",
+                                variant="ghost",
+                                size="3",
+                                color=TEXT_MAIN,
+                            ),
+                        ),
+                        rx.menu.content(
+                            rx.menu.item(navbar_link("A Propos de moi", "/about")),
+                            rx.menu.item(navbar_link("Manifeste", "/manifeste")),                        ),
+                    ),
+                    # navbar_link("Blog", "/blog"),
                     justify="end",
                     spacing="5",
                     
@@ -73,15 +71,19 @@ def navbar() -> rx.Component:
         rx.mobile_and_tablet(
             rx.hstack(
                 rx.hstack(
+                    navbar_link(
                     rx.image(
                         src="\Logo.png",
                         width="1.5em",
                         height="auto",
                         border_radius="25%",
                     ),
+                    "/home"),
+                    navbar_link(
                     rx.heading(
-                        "Salim Houari", size="6", weight="bold"
+                        "Salim Houari", size="4", weight="bold", color=TEXT_MAIN
                     ),
+                    "/home"),
                     align_items="center",
                 ),
                 rx.menu.root(
@@ -89,18 +91,16 @@ def navbar() -> rx.Component:
                         rx.icon("menu", size=30)
                     ),
                     rx.menu.content(
-                        rx.menu.item("Home"),
+                        rx.menu.item(navbar_link("Accueil", "/home")),
                         rx.menu.sub(
-                            rx.menu.sub_trigger("Services"),
+                            rx.menu.sub_trigger("A Propos", color=TEXT_MAIN, size="3"),
                             rx.menu.sub_content(
-                                rx.menu.item("Service 1"),
-                                rx.menu.item("Service 2"),
-                                rx.menu.item("Service 3"),
+                                rx.menu.item(navbar_link("A Propos de moi", "/about")),
+                                rx.menu.item(navbar_link("Manifeste", "/manifeste")),
+                                
                             ),
                         ),
-                        rx.menu.item("About"),
-                        rx.menu.item("Pricing"),
-                        rx.menu.item("Contact"),
+                        # rx.menu.item(navbar_link("Blog", "/blog")),
                     ),
                     justify="end",
                 ),
@@ -114,5 +114,8 @@ def navbar() -> rx.Component:
         # top="0px",
         # z_index="5",
         width="100%",
+        position="sticky",
+        top="0px",
+        z_index="10",
         
     )

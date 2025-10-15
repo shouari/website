@@ -8,6 +8,19 @@ from website.theme import PRIMARY_BG
 
 def base_page(*children: rx.Component) -> rx.Component:
     return rx.box(
+        rx.image(
+            src="/bg_svg.svg",
+            position="fixed",
+            top="7%",
+            left="0",
+            # transform="translate(-50%, -50%)",
+            width="100%",
+            height="auto",
+            opacity=0.2,
+            
+            z_index=0,
+            style={"pointer-events": "none"},
+        ),
         rx.vstack(
             navbar(),
             rx.box(*children, width="100%", flex="1"),  # ← contenu extensible

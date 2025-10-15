@@ -2,6 +2,7 @@
 # Application theme configuration for Reflex
 # This file defines the color palette and styles used throughout the application.
 
+# Color palette: https://tools.picsart.com/color/palette-generator/?colors=0F172A-2F7294-372F94-7D2F94-942F50
 
 
 import reflex as rx
@@ -12,8 +13,10 @@ TEXT_MAIN  = "#F1F5F9"  # l
 ACCENT     = "#372F94"  # 
 ACCENT_2   = "#372F94"  # 
 WHITE      = "#FFFFFF"
-CALYPSO_TRANSPARENT_20      = "#2F729420"
-CTA_COLOR = "#2F7294"
+CALYPSO_TRANSPARENT_20      = "#132238"
+CTA_COLOR = "#9A2E44"
+
+
 
 # Styles utilitaires
 container_style = dict(
