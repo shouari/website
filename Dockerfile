@@ -23,7 +23,7 @@ COPY . .
 RUN pip install --no-cache-dir reflex
 
 # Compile le site en mode production
-RUN reflex export --production
+RUN reflex export --env prod
 
 # Lance l'app
 CMD ["reflex", "run", "--production", "--port", "8080", "--host", "0.0.0.0"]
