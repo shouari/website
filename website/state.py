@@ -2,14 +2,13 @@ import reflex as rx
 from website.utils.supabase_client import get_supabase_client
 
 
-supabase = get_supabase_client()
 class Blog_FormState(rx.State):
     """The state for the blog form."""
     form_data: dict = {}
 
     @rx.event
     def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
+        supabase = get_supabase_client()
         print("Form data received:", form_data)
         print("Submitting to Supabase...", supabase)
         try:
