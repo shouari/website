@@ -26,5 +26,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN reflex export --env prod
 
 # Lance l'app
+EXPOSE 3000
 
 CMD ["reflex", "run", "--env", "prod", "--single-port"]
