@@ -26,4 +26,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN reflex export --env prod
 
 # Lance l'app
-CMD ["reflex", "run", "--env", "prod", "--single-port", "8080", "--host", "0.0.0.0"]
+CMD ["reflex", "run", "--env", "prod", "--single-port", "8080"]

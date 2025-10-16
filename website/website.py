@@ -22,9 +22,6 @@ meta = [
     {"property": "og:site_name", "content": "Salim Houari"},
 ]
 
-class BaseState(rx.State):
-    """The app state."""
-    pass
 
 style={
     "font_family": "Sora, sans-serif",
