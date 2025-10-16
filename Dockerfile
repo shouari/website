@@ -22,8 +22,6 @@ COPY . .
 # Installe Reflex
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Compile le site en mode production
-RUN reflex export --env prod
 
 # Lance l'app
 EXPOSE 3000
