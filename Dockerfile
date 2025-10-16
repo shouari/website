@@ -23,8 +23,6 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-# Lance l'app
-HOST
 EXPOSE 3000
 
 CMD ["reflex", "run", "--env", "prod", "--single-port", "--backend-host", "0.0.0.0"]
