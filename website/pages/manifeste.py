@@ -4,7 +4,7 @@ from website.theme import PRIMARY_BG, container_style, heading_style, text_style
 
 
 
-with open("website\content\\manifeste.md", "r", encoding="utf-8") as f:
+with open("website/content/manifeste.md", "r", encoding="utf-8") as f:
     manifeste_text = f.read()
 
 def manifeste_content() -> rx.Component:

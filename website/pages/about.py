@@ -4,7 +4,7 @@ from website.theme import PRIMARY_BG, container_style, heading_style, text_style
 
 
 
-with open("website\content\\about.md", "r", encoding="utf-8") as f:
+with open("website/content/about.md", "r", encoding="utf-8") as f:
     about_text = f.read()
 
 def about_section() -> rx.Component:
