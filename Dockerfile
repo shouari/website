@@ -29,5 +29,5 @@ RUN reflex export --env prod
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "reflex run --env prod --single-port --backend-host 0.0.0.0 --backend-port $PORT"]
+CMD ["reflex", "run", "--env", "prod", "--single-port", "--backend-host", "0.0.0.0", "--backend-port", "8080"]
 
