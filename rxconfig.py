@@ -3,6 +3,7 @@ import reflex_enterprise as rxe
 
 config = rxe.Config(
     app_name="website",
+    use_single_port=True,
 
     plugins=[
         rx.plugins.SitemapPlugin(),
