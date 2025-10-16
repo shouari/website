@@ -23,6 +23,6 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["reflex", "run", "--env", "prod", "--single-port", "--backend-host", "0.0.0.0"]
+CMD ["sh", "-c", "reflex run --env prod --backend-host 0.0.0.0 --backend-port $PORT"]
