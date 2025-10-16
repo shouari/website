@@ -1,6 +1,7 @@
 """Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
+import reflex_enterprise as rxe
 
 from website.pages.index import index
 from website.pages.about import about
@@ -26,7 +27,7 @@ meta = [
 style={
     "font_family": "Sora, sans-serif",
 }
-app = rx.App(style=style,
+app = rxe.App(style=style,
              head_components=[
                  rx.script(src="https://www.googletagmanager.com/gtag/js?id=G-DZGQP9NWQL"),
                  rx.script(

@@ -1,6 +1,7 @@
 import reflex as rx
+import reflex_enterprise as rxe
 
-config = rx.Config(
+config = rxe.Config(
     app_name="website",
 
     plugins=[
