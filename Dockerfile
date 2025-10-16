@@ -27,4 +27,4 @@ RUN reflex export --env prod
 
 # Lance l'app
 
-CMD ["reflex", "run", "--env", "prod", "--frontend-port", "8080"]
+CMD ["reflex", "run", "--env", "prod", "--single-port", "--port", "8080"]
