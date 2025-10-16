@@ -27,4 +27,7 @@ RUN reflex export --env prod
 
 # Lance l'app
 
-CMD ["reflex", "run", "--env", "prod", "--single-port"]
+EXPOSE 8080
+
+CMD ["sh", "-c", "reflex run --env prod --single-port --backend-host 0.0.0.0 --backend-port $PORT"]
+
