@@ -13,7 +13,7 @@ def manifeste_content() -> rx.Component:
                 rx.markdown(manifeste_text,
                             font_size=["1rem","1.05rem","1.1rem"],
                             text_align="justify",
-                            
+                            **text_style,
                             max_width="850px",
                             ),
             ),

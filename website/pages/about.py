@@ -13,7 +13,7 @@ def about_section() -> rx.Component:
                 rx.markdown(about_text,
                             font_size=["1rem","1.05rem","1.1rem"],
                             text_align="justify",
-                            
+                            **text_style,
                             max_width="850px",
                             ),
             ),

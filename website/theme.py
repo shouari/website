@@ -29,7 +29,7 @@ container_style = dict(
 # )
 
 heading_style = dict(color=TEXT_MAIN, font_weight="700", line_height="1")
-text_style    = dict(color=TEXT_MAIN, opacity=0.9)
+text_style    = dict(color=TEXT_MAIN, opacity=1)
 
 container_box_style = dict(
     width="100%",
