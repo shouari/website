@@ -18,7 +18,7 @@ meta = [
     {"name": "keywords", "content": "optimisation, automatisation, PME, Québec, consultant, Salim Houari"},
     {"property": "og:type", "content": "website"},
     {"property": "og:url", "content": "https://www.salimhouari.com"},
-    {"property": "og:image", "content": "/Logo.png"},
+    {"property": "og:image", "content": "/screenshot_home.png"},
     {"property": "og:site_name", "content": "Salim Houari"},
 ]
 
