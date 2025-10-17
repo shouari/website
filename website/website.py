@@ -1,4 +1,3 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
 import reflex_enterprise as rxe
@@ -29,18 +28,22 @@ style={
 }
 app = rxe.App(style=style,
              head_components=[
-                 rx.script(src="https://www.googletagmanager.com/gtag/js?id=G-DZGQP9NWQL"),
-                 rx.script(
-                            """
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', 'G-DZGQP9NWQL', { 'debug_mode': true });
-                            """
-                        ),
+                 rx.script(src="https://www.googletagmanager.com/gtag/js?id=G-N4RHF8WZ8J", async_=True),
+                rx.script(
+                        """
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', 'G-N4RHF8WZ8J');
+            window.addEventListener('popstate', () => {{
+                gtag('event', 'page_view', {{
+                    page_path: window.location.pathname + window.location.search
+                }});
+            }});
+        """
+                ),
+
              ])
-
-
 
 app.add_page(index,
              title="Salim Houari - Consultant en optimisation des opérations",
