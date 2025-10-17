@@ -54,11 +54,11 @@ app.add_page(about,
              meta=meta)
              
 
-app.add_page(blog,
-             title="Blog - Salim Houari",
-             description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
-             image="/Logo.png",
-             meta=meta)
+# app.add_page(blog,
+#              title="Blog - Salim Houari",
+#              description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
+#              image="/Logo.png",
+#              meta=meta)
 
 app.add_page(manifeste,
              title="Manifeste - Salim Houari",
