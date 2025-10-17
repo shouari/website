@@ -32,14 +32,14 @@ app = rxe.App(style=style,
                 rx.script(
                         """
             window.dataLayer = window.dataLayer || [];
-            function gtag(){{dataLayer.push(arguments);}}
+            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-N4RHF8WZ8J');
-            window.addEventListener('popstate', () => {{
-                gtag('event', 'page_view', {{
+            window.addEventListener('popstate', () => {
+                gtag('event', 'page_view', {
                     page_path: window.location.pathname + window.location.search
-                }});
-            }});
+                });
+            });
         """
                 ),
 
@@ -57,11 +57,11 @@ app.add_page(about,
              meta=meta)
              
 
-# app.add_page(blog,
-#              title="Blog - Salim Houari",
-#              description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
-#              image="/Logo.png",
-#              meta=meta)
+app.add_page(blog,
+             title="Blog - Salim Houari",
+             description="Bienvenue sur le blog! Articles, conseils et ressources pour optimiser vos opérations et automatiser vos processus.",
+             image="/Logo.png",
+             meta=meta)
 
 app.add_page(manifeste,
              title="Manifeste - Salim Houari",
