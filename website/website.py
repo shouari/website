@@ -6,6 +6,7 @@ from website.pages.index import index
 from website.pages.about import about
 from website.pages.blog import blog
 from website.pages.manifeste import manifeste
+from website.pages.clarifier_app import clarifier_page
 from rxconfig import config
 
 
@@ -66,6 +67,12 @@ app.add_page(about,
 app.add_page(manifeste,
              title="Manifeste - Salim Houari",
              description="Découvrez le manifeste qui guide ma mission: Clarifier, Simplifier, Automatiser les opérations pour une efficacité maximale.",
+             image="/Logo.png",
+             meta=meta)
+
+app.add_page(clarifier_page,
+             title="Clarifier App - Outil de cartographie des processus",
+             description="Découvrez Clarifier, l'outil no-code pour cartographier, analyser et optimiser les processus de votre entreprise.",
              image="/Logo.png",
              meta=meta)
 
