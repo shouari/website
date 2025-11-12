@@ -6,7 +6,7 @@ from website.pages.index import index
 from website.pages.about import about
 from website.pages.blog import blog
 from website.pages.manifeste import manifeste
-from website.pages.clarifier_app import clarifier_page
+from website.pages.mapper_app.mapper import mapper
 from rxconfig import config
 
 
@@ -70,9 +70,9 @@ app.add_page(manifeste,
              image="/Logo.png",
              meta=meta)
 
-app.add_page(clarifier_page,
-             title="Clarifier App - Outil de cartographie des processus",
-             description="Découvrez Clarifier, l'outil no-code pour cartographier, analyser et optimiser les processus de votre entreprise.",
+
+app.add_page(mapper,
+             title="Cartographie de processus - Salim Houari",
+             description="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
              image="/Logo.png",
              meta=meta)
-
