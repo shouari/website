@@ -80,6 +80,27 @@ def step2_tasks() -> rx.Component:
             rx.text("Aucune tâche ajoutée pour l'instant.", color="gray")
         ),
         
+        rx.hstack(
+            rx.button(
+                "Retour",
+                on_click=ProcessMapperState.prev_step,
+                variant="outline",
+                color="gray",
+                size="3"
+            ),
+            rx.spacer(),
+            rx.button(
+                "Étape suivante : Cartographie",
+                on_click=ProcessMapperState.next_step,
+                bg=CTA_COLOR,
+                color="white",
+                size="3",
+                disabled=ProcessMapperState.tasks.length() == 0
+            ),
+            width="100%",
+            margin_top="2rem"
+        ),
+        
         spacing="4",
         align="start",
         width="100%"

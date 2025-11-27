@@ -7,6 +7,7 @@ from website.pages.about import about
 from website.pages.blog import blog
 from website.pages.manifeste import manifeste
 from website.pages.mapper_app.mapper import mapper
+from website.pages.auth.login import login_page
 from rxconfig import config
 
 
