@@ -12,7 +12,11 @@
       "Bash(python -c \"from website.pages.index import index; print\\('index.py OK'\\)\")",
       "Bash(python -c ' *)",
       "Bash(dir /b /a)",
-      "Bash(python -c \"from website.website import app; print\\('App import OK'\\)\")"
+      "Bash(python -c \"from website.website import app; print\\('App import OK'\\)\")",
+      "Bash(railway up *)",
+      "Bash(railway deployment *)",
+      "Bash(railway link *)",
+      "Bash(railway logs *)"
     ]
   }
 }

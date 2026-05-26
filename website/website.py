@@ -1,7 +1,6 @@
 
 import json
 import reflex as rx
-import reflex_enterprise as rxe
 
 from website.pages.index import index
 from website.pages.about import about
@@ -117,7 +116,7 @@ def _meta(route: str, og_title: str, og_desc: str, keywords: str = "") -> list:
 
 # ── App ────────────────────────────────────────────────────────────────────────
 
-app = rxe.App(
+app = rx.App(
     style={"font_family": "Inter, sans-serif"},
     head_components=[
         # Fonts

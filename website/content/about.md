@@ -1,6 +1,6 @@
 # À propos
 
-Je m'appelle Salim Houari. Ingénieur (M.Sc.), Administrateur agréé (Adm.A.)
+Je m'appelle Salim Houari. M.Sc. Génie Mécanique, Administrateur agréé (Adm.A.)
 et membre du comité miroir canadien ISO TC279 sur le management de l'innovation.
 
 ## Ce que j'ai fait
