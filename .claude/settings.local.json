@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Test-Path \"c:\\\\coding\\\\website\\\\website\\\\pages\\\\mapper_app\\\\steps\\\\step3_process.py\" -PathType Leaf)",
+      "PowerShell(Get-ChildItem \"c:\\\\coding\\\\website\" -File | Where-Object {$_.Name -match '\\\\.\\(py|toml|yaml|yml|json|md|txt\\)$'} | Select-Object Name | Sort-Object)",
+      "Bash(.venv\\\\Scripts\\\\python.exe -c \"import website.website\")",
+      "Bash(timeout 60 .venv/Scripts/reflex.exe run)",
+      "PowerShell(cd c:\\\\coding\\\\website; $proc = Start-Process -FilePath \".venv\\\\Scripts\\\\reflex.exe\" -ArgumentList \"run\", \"--loglevel\", \"debug\" -RedirectStandardOutput \"reflex_out2.txt\" -RedirectStandardError \"reflex_err2.txt\" -PassThru -NoNewWindow; Start-Sleep -Seconds 90; if \\(-not $proc.HasExited\\) { $proc.Kill\\(\\); \"killed after 90s\" } else { \"exited with code $\\($proc.ExitCode\\)\" }; Get-Content reflex_err2.txt | Select-Object -Last 40)",
+      "PowerShell(cd c:\\\\coding\\\\website; \\(Get-Content reflex_out2.txt\\).Count; Get-Content reflex_out2.txt | Select-Object -Last 20)",
+      "PowerShell(cd c:\\\\coding\\\\website; Get-Process | Where-Object { $_.ProcessName -match \"reflex|python|bun|node\" } | Select-Object ProcessName, Id, CPU)",
+      "PowerShell(cd c:\\\\coding\\\\website; $env:REFLEX_ACCESS_TOKEN = \"c1a91605-ce14-4fa5-b1f2-c440a00c172e\"; $proc = Start-Process \".venv\\\\Scripts\\\\reflex.exe\" -ArgumentList \"run\" -RedirectStandardOutput \"rx_out.txt\" -NoNewWindow -PassThru; Start-Sleep -Seconds 100; if \\(-not $proc.HasExited\\) { \"STILL RUNNING \\(good\\)\" } else { \"EXITED code=$\\($proc.ExitCode\\)\" }; Get-Content rx_out.txt)",
+      "Bash(python -c \"from website.pages.index import index; print\\('index.py OK'\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(dir /b /a)",
+      "Bash(python -c \"from website.website import app; print\\('App import OK'\\)\")"
+    ]
+  }
+}

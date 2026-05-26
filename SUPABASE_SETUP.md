@@ -18,6 +18,21 @@ CREATE TABLE mapper_users (
 CREATE INDEX idx_mapper_users_token ON mapper_users(access_token) WHERE NOT token_used;
 ```
 
+## Database Table: `contact_messages`
+
+Create this table to store contact form submissions:
+
+```sql
+CREATE TABLE contact_messages (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    status TEXT DEFAULT 'new'
+);
+```
+
 ## Authentication Flow
 
 ### 1. Form Submission

@@ -30,7 +30,7 @@ def login_page() -> rx.Component:
                     AuthState.magic_link_sent,
                     rx.callout(
                         "Lien envoyé ! Vérifiez votre boîte mail pour vous connecter.",
-                        icon="check_circle",
+                        icon="circle_check",
                         color_scheme="green",
                         width="100%"
                     ),

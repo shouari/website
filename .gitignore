@@ -7,3 +7,6 @@ assets/external/
 .env
 .venv/
 .vscode
+reflex_*.txt
+rx_*.txt
+rx.Component

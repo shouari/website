@@ -3,7 +3,6 @@
 import reflex as rx
 from website.state import ProcessMapperState
 from website.theme import TEXT_MAIN, CTA_COLOR
-import json
 
 def step4_export() -> rx.Component:
     return rx.vstack(
@@ -41,8 +40,7 @@ def step4_export() -> rx.Component:
         # Actions d'export
         rx.hstack(
             rx.button(
-                rx.icon("file-json", size=20),
-                "Exporter en JSON",
+                rx.hstack(rx.icon("file-json", size=20), rx.text("Exporter en JSON"), spacing="2"),
                 on_click=rx.download(
                     data=ProcessMapperState.export_json_data,
                     filename="process_map.json",
@@ -51,8 +49,7 @@ def step4_export() -> rx.Component:
                 size="3"
             ),
             rx.button(
-                rx.icon("file-text", size=20),
-                "Exporter en Markdown",
+                rx.hstack(rx.icon("file-text", size=20), rx.text("Exporter en Markdown"), spacing="2"),
                 on_click=rx.download(
                     data=ProcessMapperState.export_markdown_data,
                     filename="process_map.md",
