@@ -16,7 +16,9 @@
       "Bash(railway up *)",
       "Bash(railway deployment *)",
       "Bash(railway link *)",
-      "Bash(railway logs *)"
+      "Bash(railway logs *)",
+      "PowerShell(git -C \"c:\\\\coding\\\\website\" add rxconfig.py Dockerfile)",
+      "PowerShell(git -C \"c:\\\\coding\\\\website\" status)"
     ]
   }
 }

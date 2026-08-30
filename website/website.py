@@ -141,6 +141,8 @@ app = rx.App(
             });
             """
         ),
+        # Ahrefs Web Analytics
+        rx.script(src="https://analytics.ahrefs.com/analytics.js", custom_attrs={"data-key": "vM7QrhHoNCp9Fn3zHpXKrA"}, async_=True),
         # lang="fr-CA" on <html> (Reflex 0.9.x doesn't expose html_lang in config)
         rx.script("document.documentElement.setAttribute('lang','fr-CA');"),
         # Canonical tag — dynamic, based on current URL
