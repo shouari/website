@@ -25,5 +25,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8080
 
-CMD ["reflex", "run", "--env", "prod", "--single-port", "--backend-port", "8080", "--frontend-port", "8080", "--loglevel", "debug"]
-# Compile le site en mode production
+CMD reflex run --env prod --single-port --backend-port ${PORT:-8080} --loglevel debug
