@@ -358,10 +358,10 @@ def projets_section() -> rx.Component:
                     project_card(
                         tag="Gestion des retours", tag_color="green",
                         title="App RMA — Suivi des retours produits",
-                        accroche="Des retours gérés par email et Excel. Aucun dossier ne tombait dans les mailles — par chance.",
-                        preuve="Relances automatiques · historique complet · zéro oubli",
+                        accroche="Des retours gérés par email et Excel, sans traçabilité ni historique consultable. J'ai conçu un outil de suivi de bout en bout, actuellement en validation terrain.",
+                        preuve="Prototype fonctionnel · historique centralisé · validation terrain en cours",
                         stack="Python · Streamlit · PostgreSQL · Brevo",
-                        statut="Déploiement en cours",
+                        statut="Prototype fonctionnel",
                         slug="rma",
                         gradient=f"linear-gradient(135deg, {VERT_TERRAIN}22, {BG_CARD})",
                     ),

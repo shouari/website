@@ -258,9 +258,9 @@ app.add_page(
     projet_rma,
     route="/projets/rma",
     title="App RMA — Suivi des retours | Salim Houari",
-    description="Traçabilité complète du cycle de retour produit. Python · Reflex · Supabase · Brevo.",
+    description="Outil de suivi du cycle de retour produit — prototype fonctionnel, validation terrain en cours. Python · Reflex · Supabase · Brevo.",
     image="/Logo.png",
-    meta=_meta("/projets/rma", og_title="App RMA — Suivi des retours | Salim Houari", og_desc="Traçabilité 100 % du cycle RMA. Procédure standardisée, indépendante des individus."),
+    meta=_meta("/projets/rma", og_title="App RMA — Suivi des retours | Salim Houari", og_desc="Outil de suivi RMA de bout en bout — prototype fonctionnel, validation terrain en cours."),
 )
 
 app.add_page(

@@ -1,7 +1,7 @@
 # Suivi RMA — Gestion des retours produits
 
 **Stack :** Python · Streamlit · PostgreSQL · Brevo API · Plotly
-**Statut :** Déployé — approbation déploiement client en cours
+**Statut :** Prototype fonctionnel — validation terrain en cours
 
 ---
 
@@ -47,9 +47,12 @@ Chaque action sur un dossier est journalisée avec horodatage.
 Les pièces jointes (photos, documents fabricant) sont stockées en base.
 Un tableau de bord analytique donne la vue d'ensemble en temps réel.
 
-## Ce que ça change
+## L'objectif
 
-Un dossier RMA ne peut plus tomber dans les mailles du filet.
-La procédure est dans l'outil — pas dans la tête de quelqu'un.
-Les relances partent seules. Les escalades sont visibles.
-Et quand l'équipe change, l'historique reste.
+Un dossier RMA qui ne tombe plus dans les mailles du filet.
+La procédure dans l'outil — pas dans la tête de quelqu'un.
+Des relances qui partent seules. Des escalades visibles.
+Et quand l'équipe change, l'historique qui reste.
+
+Le prototype est fonctionnel et couvre l'ensemble du cycle.
+La validation terrain est en cours, avant décision de déploiement.
