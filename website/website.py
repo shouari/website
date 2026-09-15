@@ -5,6 +5,7 @@ import reflex as rx
 from website.pages.index import index
 from website.pages.about import about
 from website.pages.manifeste import manifeste
+from website.pages.publications import publications
 from website.pages.mapper_app.mapper import mapper
 from website.pages.auth.login import login_page
 from website.pages.contact import contact_page
@@ -209,6 +210,21 @@ app.add_page(
         "/manifeste",
         og_title="Manifeste — Salim Houari | CSA : Clarifier, Simplifier, Automatiser",
         og_desc="La méthode CSA appliquée aux opérations réelles. Sans promesses creuses.",
+    ),
+)
+
+app.add_page(
+    publications,
+    title="Publications — Salim Houari | Ordre des administrateurs agréés du Québec",
+    description=(
+        "Article et balado sur les irritants opérationnels, publiés par l'Ordre "
+        "des administrateurs agréés du Québec. Salim Houari, Adm.A."
+    ),
+    image="/Logo.png",
+    meta=_meta(
+        "/publications",
+        og_title="Publications — Salim Houari",
+        og_desc="Article et balado publiés par l'Ordre des administrateurs agréés du Québec.",
     ),
 )
 
