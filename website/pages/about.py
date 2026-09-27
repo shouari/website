@@ -70,6 +70,5 @@ def about_section() -> rx.Component:
     )
 
 
-@rx.page(route="/about")
 def about() -> rx.Component:
     return base_page(about_section())

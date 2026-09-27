@@ -113,7 +113,6 @@ def contact_form_column() -> rx.Component:
         border="1px solid rgba(255,255,255,0.1)"
     )
 
-@rx.page(route="/contact", title="Contact - Salim Houari")
 def contact_page() -> rx.Component:
     return base_page(
         rx.box(

@@ -234,6 +234,5 @@ def lead_capture_form() -> rx.Component:
     )
 
 
-@rx.page(route="/mapper", title="Cartographie de processus", on_load=ProcessMapperState.check_token_on_load)
 def mapper():
     return rx.cond(ProcessMapperState.mapper_form_submitted, app_layout(), lead_capture_form())

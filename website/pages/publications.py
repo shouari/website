@@ -154,6 +154,5 @@ def publications_content() -> rx.Component:
     )
 
 
-@rx.page(route="/publications")
 def publications() -> rx.Component:
     return base_page(publications_content())

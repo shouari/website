@@ -548,7 +548,6 @@ def cta_final_section() -> rx.Component:
 
 # ── PAGE ──────────────────────────────────────────────────────────────────────
 
-@rx.page(route="/")
 def index() -> rx.Component:
     return base_page(
         hero_section(),

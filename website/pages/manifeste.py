@@ -37,6 +37,5 @@ def manifeste_content() -> rx.Component:
     )
 
 
-@rx.page(route="/manifeste", title="Manifeste — Clarifier, Simplifier, Automatiser")
 def manifeste() -> rx.Component:
     return base_page(manifeste_content())
