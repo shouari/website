@@ -40,7 +40,7 @@ def _page(slug: str) -> rx.Component:
                 rx.vstack(
                     rx.link(
                         "← Retour aux projets",
-                        href="/home#projets",
+                        href="/#projets",
                         color=VERT_CLAIR,
                         size="2",
                         _hover={"opacity": "0.8"},

@@ -26,9 +26,9 @@ def navbar() -> rx.Component:
     )
 
     desktop_links = rx.hstack(
-        navbar_link("Accueil", "/home"),
-        navbar_link("Projets", "/home#projets"),
-        navbar_link("Méthode", "/home#methode"),
+        navbar_link("Accueil", "/"),
+        navbar_link("Projets", "/#projets"),
+        navbar_link("Méthode", "/#methode"),
         navbar_link("Publications", "/publications"),
         navbar_link("À propos", "/about"),
         navbar_link("Manifeste", "/manifeste"),
@@ -39,9 +39,9 @@ def navbar() -> rx.Component:
     mobile_menu = rx.menu.root(
         rx.menu.trigger(rx.icon("menu", size=28, color=TEXT_MAIN)),
         rx.menu.content(
-            rx.menu.item(navbar_link("Accueil", "/home")),
-            rx.menu.item(navbar_link("Projets", "/home#projets")),
-            rx.menu.item(navbar_link("Méthode", "/home#methode")),
+            rx.menu.item(navbar_link("Accueil", "/")),
+            rx.menu.item(navbar_link("Projets", "/#projets")),
+            rx.menu.item(navbar_link("Méthode", "/#methode")),
             rx.menu.item(navbar_link("Publications", "/publications")),
             rx.menu.item(navbar_link("À propos", "/about")),
             rx.menu.item(navbar_link("Manifeste", "/manifeste")),
@@ -53,7 +53,7 @@ def navbar() -> rx.Component:
     return rx.box(
         rx.desktop_only(
             rx.hstack(
-                rx.link(logo, href="/home"),
+                rx.link(logo, href="/"),
                 desktop_links,
                 justify="between",
                 align_items="center",
@@ -62,7 +62,7 @@ def navbar() -> rx.Component:
         ),
         rx.mobile_and_tablet(
             rx.hstack(
-                rx.link(logo, href="/home"),
+                rx.link(logo, href="/"),
                 mobile_menu,
                 justify="between",
                 align_items="center",

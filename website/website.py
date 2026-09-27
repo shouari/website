@@ -1,6 +1,7 @@
 
 import json
 import reflex as rx
+from starlette.responses import RedirectResponse
 
 from website.pages.index import index
 from website.pages.about import about
@@ -132,8 +133,27 @@ def _trust_railway_proxy(asgi_app):
     return wrapped
 
 
+# /home est remplacé par / comme accueil unique — les anciens liens/favoris
+# doivent atterrir sur l'URL canonique en un seul saut, pas sur une page morte.
+_LEGACY_REDIRECTS = {"/home": "/", "/home/": "/"}
+
+
+def _redirect_legacy_routes(asgi_app):
+    async def wrapped(scope, receive, send):
+        if scope["type"] == "http" and scope.get("path") in _LEGACY_REDIRECTS:
+            target = _LEGACY_REDIRECTS[scope["path"]]
+            query = scope.get("query_string", b"").decode()
+            if query:
+                target = f"{target}?{query}"
+            response = RedirectResponse(url=target, status_code=301)
+            await response(scope, receive, send)
+            return
+        await asgi_app(scope, receive, send)
+    return wrapped
+
+
 app = rx.App(
-    api_transformer=_trust_railway_proxy,
+    api_transformer=[_redirect_legacy_routes, _trust_railway_proxy],
     style={"font_family": "Inter, sans-serif"},
     head_components=[
         # Fonts
@@ -195,7 +215,7 @@ app.add_page(
     ),
     image="/Logo.png",
     meta=_meta(
-        "/home",
+        "/",
         og_title="Salim Houari | Amélioration continue & Automatisation",
         og_desc="Expert en transformation opérationnelle et automatisation. 5 outils déployés en production. Laval, QC.",
         keywords="amélioration continue, automatisation processus, coordonnateur opérations, Lean Kaizen, BPMN, ISO TC279, Laval Québec, consultant PME",
