@@ -116,8 +116,24 @@ def _meta(route: str, og_title: str, og_desc: str, keywords: str = "") -> list:
 
 
 # ── App ────────────────────────────────────────────────────────────────────────
+# Railway termine le TLS à l'edge et transmet en HTTP en interne. Sans ceci, le
+# scope ASGI voit scheme="http" et la redirection de canonisation de barre
+# oblique (/about → /about/) part en http://, provoquant une boucle de
+# redirection pour les clients qui refusent la rétrogradation https→http.
+
+def _trust_railway_proxy(asgi_app):
+    async def wrapped(scope, receive, send):
+        if scope["type"] == "http":
+            headers = dict(scope.get("headers", []))
+            proto = headers.get(b"x-forwarded-proto", b"").decode()
+            if proto:
+                scope["scheme"] = proto
+        await asgi_app(scope, receive, send)
+    return wrapped
+
 
 app = rx.App(
+    api_transformer=_trust_railway_proxy,
     style={"font_family": "Inter, sans-serif"},
     head_components=[
         # Fonts
