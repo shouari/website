@@ -95,7 +95,6 @@ _META_BASE = [
     {"name": "viewport", "content": "width=device-width, initial-scale=1.0"},
     {"name": "theme-color", "content": "#0D1B2A"},
     {"name": "author", "content": "Salim Houari"},
-    {"name": "robots", "content": "index, follow"},
     {"name": "geo.region", "content": "CA-QC"},
     {"name": "geo.placename", "content": "Laval, Québec, Canada"},
     {"property": "og:type", "content": "website"},
@@ -115,8 +114,11 @@ def _canonical_url(route: str) -> str:
     return f"https://www.salimhouari.com{route}/"
 
 
-def _meta(route: str, og_title: str, og_desc: str, keywords: str = "") -> list:
+def _meta(
+    route: str, og_title: str, og_desc: str, keywords: str = "", noindex: bool = False
+) -> list:
     m = _META_BASE + [
+        {"name": "robots", "content": "noindex, follow" if noindex else "index, follow"},
         {"property": "og:url", "content": f"https://www.salimhouari.com{route}"},
         {"property": "og:title", "content": og_title},
         {"property": "og:description", "content": og_desc},
@@ -222,6 +224,7 @@ app.add_page(
         og_desc="Expert en transformation opérationnelle et automatisation. 5 outils déployés en production. Laval, QC.",
         keywords="amélioration continue, automatisation processus, coordonnateur opérations, Lean Kaizen, BPMN, ISO TC279, Laval Québec, consultant PME",
     ),
+    context={"sitemap": {"priority": 1.0}},
 )
 
 app.add_page(
@@ -237,6 +240,7 @@ app.add_page(
         og_title="À propos — Salim Houari | Adm.A., M.Sc., ISO TC279",
         og_desc="15 ans d'opérations réelles. Algérie, Qatar, Canada. Administrateur agréé (Adm.A.), M.Sc. Génie mécanique.",
     ),
+    context={"sitemap": {"priority": 0.8}},
 )
 
 app.add_page(
@@ -249,6 +253,7 @@ app.add_page(
         og_title="Manifeste — Salim Houari | CSA : Clarifier, Simplifier, Automatiser",
         og_desc="La méthode CSA appliquée aux opérations réelles. Sans promesses creuses.",
     ),
+    context={"sitemap": {"priority": 0.8}},
 )
 
 app.add_page(
@@ -264,6 +269,7 @@ app.add_page(
         og_title="Publications — Salim Houari",
         og_desc="Article et balado publiés par l'Ordre des administrateurs agréés du Québec.",
     ),
+    context={"sitemap": {"priority": 0.8}},
 )
 
 app.add_page(
@@ -277,7 +283,9 @@ app.add_page(
         "/mapper",
         og_title="Cartographie de processus — Salim Houari",
         og_desc="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
+        noindex=True,
     ),
+    context={"sitemap": None},
 )
 
 app.add_page(
@@ -290,7 +298,9 @@ app.add_page(
         "/contact",
         og_title="Contact — Salim Houari",
         og_desc="Contactez Salim Houari pour discuter de vos projets d'optimisation.",
+        noindex=True,
     ),
+    context={"sitemap": None},
 )
 
 app.add_page(
@@ -300,6 +310,7 @@ app.add_page(
     description="Brief IA avant chaque appel de service. Envoi automatique au technicien. Python · Reflex · Claude API.",
     image="/Logo.png",
     meta=_meta("/projets/preparateur", og_title="Préparateur d'intervention — Salim Houari", og_desc="Brief IA avant chaque appel de service. Standardisation à 100 % des interventions."),
+    context={"sitemap": {"priority": 0.6}},
 )
 
 app.add_page(
@@ -309,6 +320,7 @@ app.add_page(
     description="Données SAV rendues lisibles et exploitables. Rapport mensuel automatisé. 2 ans d'historique. Python · Streamlit · Pandas · Plotly.",
     image="/Logo.png",
     meta=_meta("/projets/kpi-dashboard", og_title="Dashboard KPI SAV — Salim Houari", og_desc="Des données opérationnelles illisibles rendues exploitables. Rapport mensuel automatisé, KPI validés par la direction."),
+    context={"sitemap": {"priority": 0.6}},
 )
 
 app.add_page(
@@ -317,7 +329,8 @@ app.add_page(
     title="App RMA — Suivi des retours | Salim Houari",
     description="Outil de suivi du cycle de retour produit — prototype fonctionnel, validation terrain en cours. Python · Reflex · Supabase · Brevo.",
     image="/Logo.png",
-    meta=_meta("/projets/rma", og_title="App RMA — Suivi des retours | Salim Houari", og_desc="Outil de suivi RMA de bout en bout — prototype fonctionnel, validation terrain en cours."),
+    meta=_meta("/projets/rma", og_title="App RMA — Suivi des retours | Salim Houari", og_desc="Outil de suivi RMA de bout en bout — prototype fonctionnel, validation terrain en cours.", noindex=True),
+    context={"sitemap": None},
 )
 
 app.add_page(
@@ -327,6 +340,7 @@ app.add_page(
     description="100 % des appels SAV documentés. Déclenchement automatique à la sonnerie 3CX. Python · Streamlit.",
     image="/Logo.png",
     meta=_meta("/projets/call-logger", og_title="Call Logger 3CX — Salim Houari", og_desc="100 % des appels entrants documentés. Déclenchement automatique, zéro friction."),
+    context={"sitemap": {"priority": 0.6}},
 )
 
 app.add_page(
@@ -335,5 +349,6 @@ app.add_page(
     title="Système Q-SYS AV/Domotique — Salim Houari",
     description="Framework d'interfaces HTML standalone pour piloter QSC Q-SYS. HTML · JS · QRC.",
     image="/Logo.png",
-    meta=_meta("/projets/qsys", og_title="Système Q-SYS AV/Domotique — Salim Houari", og_desc="3 interfaces déployables hors-ligne sur tablette. Framework réutilisable pour intégrateurs AV."),
+    meta=_meta("/projets/qsys", og_title="Système Q-SYS AV/Domotique — Salim Houari", og_desc="3 interfaces déployables hors-ligne sur tablette. Framework réutilisable pour intégrateurs AV.", noindex=True),
+    context={"sitemap": None},
 )
