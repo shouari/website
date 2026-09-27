@@ -106,11 +106,21 @@ _META_BASE = [
 ]
 
 
+def _canonical_url(route: str) -> str:
+    # Chaque route sans "/" final fait un 307 vers sa forme avec "/" (voir
+    # api_transformer plus bas) : le canonical doit pointer sur l'URL qui
+    # répond 200 directement, jamais sur une URL qui redirige.
+    if route == "/":
+        return "https://www.salimhouari.com/"
+    return f"https://www.salimhouari.com{route}/"
+
+
 def _meta(route: str, og_title: str, og_desc: str, keywords: str = "") -> list:
     m = _META_BASE + [
         {"property": "og:url", "content": f"https://www.salimhouari.com{route}"},
         {"property": "og:title", "content": og_title},
         {"property": "og:description", "content": og_desc},
+        rx.el.link(rel="canonical", href=_canonical_url(route)),
     ]
     if keywords:
         m.append({"name": "keywords", "content": keywords})
@@ -183,15 +193,6 @@ app = rx.App(
         rx.script(src="https://analytics.ahrefs.com/analytics.js", custom_attrs={"data-key": "vM7QrhHoNCp9Fn3zHpXKrA"}, async_=True),
         # lang="fr-CA" on <html> (Reflex 0.9.x doesn't expose html_lang in config)
         rx.script("document.documentElement.setAttribute('lang','fr-CA');"),
-        # Canonical tag — dynamic, based on current URL
-        rx.script(
-            "(function(){"
-            "var l=document.createElement('link');"
-            "l.rel='canonical';"
-            "l.href=window.location.origin+window.location.pathname;"
-            "document.head.appendChild(l);"
-            "})();"
-        ),
         # JSON-LD — Schema.org Person + WebSite (GEO: ChatGPT, Perplexity, Claude, Gemini)
         rx.el.script(
             type="application/ld+json",
