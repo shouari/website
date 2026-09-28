@@ -226,6 +226,17 @@ def _gzip_excluding_realtime(asgi_app):
         if scope["type"] == "http" and (path.startswith("/_event") or path.startswith("/_upload")):
             await asgi_app(scope, receive, send)
             return
+        # Granian annonce l'extension ASGI "http.response.pathsend" ; Starlette
+        # l'utilise alors pour un envoi de fichier "zero-copy" qui contourne
+        # http.response.body -- et GZipMiddleware ignore explicitement ces
+        # réponses (rien à compresser dans son propre flux). On retire
+        # l'extension pour forcer l'envoi classique, seul chemin compressible.
+        extensions = scope.get("extensions")
+        if scope["type"] == "http" and extensions and "http.response.pathsend" in extensions:
+            scope = {
+                **scope,
+                "extensions": {k: v for k, v in extensions.items() if k != "http.response.pathsend"},
+            }
         await compressed(scope, receive, send)
     return wrapped
 
