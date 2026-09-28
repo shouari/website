@@ -1,7 +1,9 @@
 
 import json
+import re
 import reflex as rx
 from starlette.responses import RedirectResponse
+from starlette.middleware.gzip import GZipMiddleware
 
 from website.pages.index import index
 from website.pages.about import about
@@ -165,8 +167,76 @@ def _redirect_legacy_routes(asgi_app):
     return wrapped
 
 
+# Fichiers Vite à empreinte de contenu : "-<hash 8 car.>.<ext>" en fin de nom,
+# ex. "chunk-OE4NN4TA-D7kNFO7C.js", "__reflex_global_styles-rbAStlxI.css".
+# Restreint à /assets/ (seul dossier où vivent ces fichiers).
+_HASHED_ASSET_RE = re.compile(r"-[A-Za-z0-9_-]{8}\.(?:js|css|woff2?)$")
+_STATIC_IMAGE_RE = re.compile(r"\.(?:png|ico|jpe?g|gif|svg|webp)$", re.IGNORECASE)
+
+
+def _cache_control_for(path: str, content_type: str) -> str | None:
+    if path.startswith("/assets/") and _HASHED_ASSET_RE.search(path):
+        return "public, max-age=31536000, immutable"
+    if content_type.startswith("text/html"):
+        return "no-cache"
+    if _STATIC_IMAGE_RE.search(path):
+        return "public, max-age=86400"
+    return None  # API, redirections, sitemap.xml, robots.txt : inchangé
+
+
+def _add_cache_control(asgi_app):
+    async def wrapped(scope, receive, send):
+        path = scope.get("path", "")
+        if (
+            scope["type"] != "http"
+            or scope.get("method") not in ("GET", "HEAD")
+            or path.startswith("/_event")
+            or path.startswith("/_upload")
+        ):
+            await asgi_app(scope, receive, send)
+            return
+
+        async def send_with_cache_control(message):
+            if message["type"] == "http.response.start":
+                headers = message.get("headers", [])
+                if any(k.lower() == b"cache-control" for k, v in headers):
+                    await send(message)  # déjà défini en aval : on ne touche pas
+                    return
+                content_type = ""
+                for k, v in headers:
+                    if k.lower() == b"content-type":
+                        content_type = v.decode(errors="ignore")
+                        break
+                value = _cache_control_for(path, content_type)
+                if value is not None:
+                    message = {**message, "headers": [*headers, (b"cache-control", value.encode())]}
+            await send(message)
+
+        await asgi_app(scope, receive, send_with_cache_control)
+    return wrapped
+
+
+def _gzip_excluding_realtime(asgi_app):
+    # GZipMiddleware ignore déjà les scopes non-http (donc les WebSocket), mais
+    # Socket.IO expose aussi un transport HTTP long-polling sur /_event.
+    compressed = GZipMiddleware(asgi_app, minimum_size=500, compresslevel=6)
+
+    async def wrapped(scope, receive, send):
+        path = scope.get("path", "")
+        if scope["type"] == "http" and (path.startswith("/_event") or path.startswith("/_upload")):
+            await asgi_app(scope, receive, send)
+            return
+        await compressed(scope, receive, send)
+    return wrapped
+
+
 app = rx.App(
-    api_transformer=[_redirect_legacy_routes, _trust_railway_proxy],
+    api_transformer=[
+        _redirect_legacy_routes,
+        _gzip_excluding_realtime,
+        _add_cache_control,
+        _trust_railway_proxy,
+    ],
     style={"font_family": "Inter, sans-serif"},
     head_components=[
         # Fonts
