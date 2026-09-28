@@ -9,10 +9,11 @@ from website.pages.index import index
 from website.pages.about import about
 from website.pages.manifeste import manifeste
 from website.pages.publications import publications
-from website.pages.mapper_app.mapper import mapper
-from website.state import ProcessMapperState
+# Désactivé temporairement (routes /mapper et /contact retirées, 404) — décommenter pour réactiver.
+# from website.pages.mapper_app.mapper import mapper
+# from website.state import ProcessMapperState
 from website.pages.auth.login import login_page
-from website.pages.contact import contact_page
+# from website.pages.contact import contact_page
 from website.pages.projets import (
     projet_preparateur,
     projet_kpi_dashboard,
@@ -353,36 +354,38 @@ app.add_page(
     context={"sitemap": {"priority": 0.8}},
 )
 
-app.add_page(
-    mapper,
-    route="/mapper",
-    title="Cartographie de processus — Outil gratuit | Salim Houari",
-    description="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
-    image="/Logo.png",
-    on_load=ProcessMapperState.check_token_on_load,
-    meta=_meta(
-        "/mapper",
-        og_title="Cartographie de processus — Salim Houari",
-        og_desc="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
-        noindex=True,
-    ),
-    context={"sitemap": None},
-)
-
-app.add_page(
-    contact_page,
-    route="/contact",
-    title="Contact — Salim Houari",
-    description="Contactez Salim Houari pour discuter de vos projets d'optimisation et d'automatisation.",
-    image="/Logo.png",
-    meta=_meta(
-        "/contact",
-        og_title="Contact — Salim Houari",
-        og_desc="Contactez Salim Houari pour discuter de vos projets d'optimisation.",
-        noindex=True,
-    ),
-    context={"sitemap": None},
-)
+# Désactivé temporairement — /mapper et /contact renvoient 404. Décommenter
+# (et les imports correspondants plus haut) pour réactiver.
+# app.add_page(
+#     mapper,
+#     route="/mapper",
+#     title="Cartographie de processus — Outil gratuit | Salim Houari",
+#     description="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
+#     image="/Logo.png",
+#     on_load=ProcessMapperState.check_token_on_load,
+#     meta=_meta(
+#         "/mapper",
+#         og_title="Cartographie de processus — Salim Houari",
+#         og_desc="Outil gratuit pour cartographier et documenter vos processus opérationnels.",
+#         noindex=True,
+#     ),
+#     context={"sitemap": None},
+# )
+#
+# app.add_page(
+#     contact_page,
+#     route="/contact",
+#     title="Contact — Salim Houari",
+#     description="Contactez Salim Houari pour discuter de vos projets d'optimisation et d'automatisation.",
+#     image="/Logo.png",
+#     meta=_meta(
+#         "/contact",
+#         og_title="Contact — Salim Houari",
+#         og_desc="Contactez Salim Houari pour discuter de vos projets d'optimisation.",
+#         noindex=True,
+#     ),
+#     context={"sitemap": None},
+# )
 
 app.add_page(
     projet_preparateur,
